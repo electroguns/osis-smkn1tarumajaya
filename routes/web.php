@@ -263,6 +263,42 @@ Route::get('/health', function () {
     ]);
 });
 
+Route::get('/debug-home', function () {
+    try {
+        $arsipCount = \App\Models\Arsip::count();
+        $albumCount = \App\Models\Arsip::distinct('tahun')->count('tahun');
+        $users = \App\Models\User::whereNotNull('role')->get();
+        $struktur = [
+            'ketua' => $users->where('role', 'ketua')->values(),
+            'wakil' => $users->where('role', 'wakil')->values(),
+            'sekretaris' => $users->where('role', 'sekretaris')->values(),
+            'bendahara' => $users->where('role', 'bendahara')->values(),
+        ];
+        $anggotaCount = $users->count();
+        $programCount = \App\Models\Event::where('category', 'Program')->count();
+        $landingVisi = \App\Models\VisionMission::where('category', 'Visi')->get();
+        $landingMisi = \App\Models\VisionMission::where('category', 'Misi')->get();
+        $latestBeritas = \App\Models\Berita::published()->latest('published_at')->limit(3)->get();
+        $finances = \App\Models\Finance::where('status', 'Menyetujui')->orderBy('tanggal', 'desc')->get();
+        $totalIncome = 0;
+        $totalExpense = 0;
+        $balance = 0;
+        $siteConfig = [];
+        $contacts = [];
+        $isRegistrationOpen = true;
+
+        $html = view('welcome', compact('arsipCount', 'albumCount', 'struktur', 'landingVisi', 'landingMisi', 'anggotaCount', 'latestBeritas', 'isRegistrationOpen', 'programCount', 'finances', 'totalIncome', 'totalExpense', 'balance', 'siteConfig', 'contacts'))->render();
+        return response('SUCCESS: VIEW RENDERED: ' . strlen($html) . ' bytes');
+    } catch (\Throwable $e) {
+        return response()->json([
+            'error_class' => get_class($e),
+            'message' => $e->getMessage(),
+            'file' => $e->getFile(),
+            'line' => $e->getLine(),
+        ], 200);
+    }
+});
+
 Route::get('/berita/{berita:slug}', [BeritaController::class, 'show'])->name('berita.show');
 Route::view('/exp', 'osis.export-approved-pdf')->name('export-pdf');
 
