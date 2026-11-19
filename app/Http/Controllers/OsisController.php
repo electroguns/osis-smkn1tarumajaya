@@ -349,7 +349,7 @@ class OsisController extends Controller
             return back()->withErrors(['whatsapp_link' => 'Link harus berupa undangan grup WhatsApp yang valid.']);
         }
 
-        if (!Auth::check() || Auth::user()->role !== 'sekretaris') {
+        if (!Auth::check() || !in_array(Auth::user()->role, ['ketua', 'wakil', 'sekretaris', 'ketua_divisi_humas'])) {
             abort(403, 'Anda tidak memiliki izin untuk update link grup WhatsApp.');
         }
 

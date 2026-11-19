@@ -138,6 +138,9 @@ Route::post('/osis/suara/kirim', [SuaraController::class, 'store'])->name('suara
 // =========================================================================
 Route::middleware('auth')->group(function () {
 
+    // --- Matriks RBAC Khusus Ketua OSIS ---
+    Route::get('/rbac', [\App\Http\Controllers\RoleAccessController::class, 'index'])->name('rbac.index');
+
     // --- Manajemen Pendaftaran OSIS ---
     Route::prefix('admin/osis')->name('admin.osis.')->group(function () {
 
