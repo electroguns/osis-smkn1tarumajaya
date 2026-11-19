@@ -125,15 +125,6 @@
                         </span>.
                         Semua sistem validasi dan monitoring organisasi aktif.
                     </p>
-
-                    @if($currentRole === 'ketua' || (Auth::check() && Auth::user()->email === '15240006@nusamandiri.ac.id'))
-                        <div class="mt-3.5">
-                            <a href="{{ route('rbac.index') }}" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-rose-600 to-[#571319] text-white text-xs font-black shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200">
-                                <span>👑 Buka Halaman Matriks RBAC Semua Role</span>
-                                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-                            </a>
-                        </div>
-                    @endif
                 </div>
             </div>
 
@@ -154,37 +145,6 @@
                     {{ $isFullAccess ? 'Full Access' : ($roleLabels[$currentRole] ?? 'Restricted Access') }}
                 </span>
             </div>
-
-            {{-- ================= BANNER SHORTCUT MATRIKS RBAC (KHUSUS KETUA OSIS) ================= --}}
-            @if($currentRole === 'ketua' || (Auth::check() && Auth::user()->email === '15240006@nusamandiri.ac.id'))
-            <div class="mb-8">
-                <div class="apple-glass-card rounded-[2rem] p-6 sm:p-7 flex flex-col md:flex-row md:items-center justify-between gap-5 !bg-gradient-to-r !from-rose-500/[0.08] !via-pink-500/[0.04] !to-white/80 !border-rose-300/40 shadow-lg">
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-600 to-[#571319] text-white flex items-center justify-center shrink-0 shadow-md">
-                            <span class="text-2xl">👑</span>
-                        </div>
-                        <div>
-                            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 text-[10px] font-black uppercase tracking-wider mb-1">
-                                <span class="w-2 h-2 rounded-full bg-rose-600 animate-pulse"></span>
-                                <span>Panel Eksklusif Ketua OSIS</span>
-                            </div>
-                            <h3 class="text-lg sm:text-xl font-black text-slate-900 tracking-tight">
-                                Matriks Hak Akses Semua Role (RBAC)
-                            </h3>
-                            <p class="text-slate-600 text-xs mt-0.5 max-w-xl">
-                                Buka halaman khusus untuk melihat pemetaan wewenang 12 jabatan kepengurusan dan detail hak akses integrasi link WhatsApp.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="shrink-0">
-                        <a href="{{ route('rbac.index') }}" class="apple-glass-btn !w-auto !px-6 !py-3 !text-xs flex items-center gap-2 shadow-md hover:shadow-lg transition">
-                            <span>Buka Halaman Matriks RBAC</span>
-                            <svg class="w-4 h-4 stroke-white" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            @endif
 
             {{-- ================= PUSAT KENDALI & MODUL TERPADU (ALL-IN-ONE 3-KOLOM LIQUID GLASS) ================= --}}
             <div class="mb-12">
@@ -814,6 +774,43 @@
                                 </div>
                             </div>
 
+                            <!-- 12. Matriks Hak Akses (RBAC) -->
+                            @if($currentRole === 'ketua' || (Auth::check() && Auth::user()->email === '15240006@nusamandiri.ac.id'))
+                            <div class="apple-glass-card group/card relative overflow-hidden rounded-[2rem] p-6 flex flex-col justify-between border-rose-300/40">
+                                <div class="apple-glass-specular"></div>
+                                <div class="absolute -top-10 -right-10 w-28 h-28 bg-gradient-to-br from-rose-500/15 via-rose-400/5 to-transparent rounded-full blur-2xl pointer-events-none group-hover/card:scale-150 transition-transform duration-500"></div>
+
+                                <div class="relative z-10">
+                                    <div class="flex items-center justify-between gap-2 mb-4">
+                                        <div class="flex items-center gap-4">
+                                            <div class="apple-icon-squircle">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 stroke-white" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                                                </svg>
+                                            </div>
+                                            <h4 class="font-bold text-slate-900 text-base group-hover/card:text-[#571319] transition-colors leading-snug">
+                                                Matriks RBAC
+                                            </h4>
+                                        </div>
+                                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-rose-100 text-rose-700 border border-rose-200 shrink-0">
+                                            Khusus Ketua
+                                        </span>
+                                    </div>
+                                    <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                        Tinjau peta wewenang seluruh 12 jabatan kepengurusan, hak akses tiap modul, dan otoritas link WhatsApp.
+                                    </p>
+                                </div>
+
+                                <div class="relative z-10 mt-auto pt-4">
+                                    <a href="{{ route('rbac.index') }}" aria-label="Buka Matriks Hak Akses RBAC" class="apple-glass-btn">
+                                        <span>Buka Matriks RBAC</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-white shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            @endif
 
                         </div>
                     </div>
