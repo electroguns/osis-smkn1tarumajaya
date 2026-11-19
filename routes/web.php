@@ -233,6 +233,36 @@ Route::middleware('auth')->group(function () {
     Route::patch('/tracking-laporan/{id}/reject', [ActivityReportController::class, 'reject'])->name('reports.reject');
 });
 
+Route::get('/health', function () {
+    $dbStatus = 'disconnected';
+    $dbError = null;
+    $tables = [];
+    try {
+        DB::connection()->getPdo();
+        $dbStatus = 'connected';
+        $rawTables = DB::select('SHOW TABLES');
+        foreach ($rawTables as $t) {
+            $tables[] = array_values((array)$t)[0];
+        }
+    } catch (\Throwable $e) {
+        $dbError = $e->getMessage();
+    }
+    return response()->json([
+        'status' => 'ok',
+        'php' => PHP_VERSION,
+        'app_env' => config('app.env'),
+        'database' => [
+            'status' => $dbStatus,
+            'driver' => config('database.default'),
+            'host' => config('database.connections.mysql.host'),
+            'database' => config('database.connections.mysql.database'),
+            'tables_count' => count($tables),
+            'tables' => $tables,
+            'error' => $dbError,
+        ]
+    ]);
+});
+
 Route::get('/berita/{berita:slug}', [BeritaController::class, 'show'])->name('berita.show');
 Route::view('/exp', 'osis.export-approved-pdf')->name('export-pdf');
 
