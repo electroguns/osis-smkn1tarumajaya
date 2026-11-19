@@ -12,7 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-		  $middleware->redirectGuestsTo(
+        $middleware->trustProxies(at: '*');
+
+        $middleware->redirectGuestsTo(
             fn () => '/?login=1'
         );
 
