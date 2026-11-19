@@ -10,12 +10,15 @@ fi
 # Buat symbolic link storage jika belum ada
 php artisan storage:link || true
 
+# Inisialisasi skema awal jika database kosong
+php artisan db:init-schema || true
+
+# Jalankan migrasi database otomatis saat deploy
+php artisan migrate --force || true
+
 # Optimasi konfigurasi, route, dan view
 php artisan config:cache || true
 php artisan route:cache || true
 php artisan view:cache || true
-
-# Jalankan migrasi database otomatis saat deploy
-php artisan migrate --force || true
 
 exec "$@"
