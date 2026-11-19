@@ -1,0 +1,16 @@
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Bypass aturan proteksi symlink yang ketat di shared hosting
+    Options +SymLinksIfOwnerMatch -Indexes
+
+    # Blokir akses ke file sensitif .env
+    RewriteRule ^\.env$ - [F,L]
+
+    # Alirkan semua request ke index.php
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>

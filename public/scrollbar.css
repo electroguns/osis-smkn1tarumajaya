@@ -1,0 +1,22 @@
+/* Custom Scrollbar Global */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f5f9; /* Slate 100 */
+}
+::-webkit-scrollbar-thumb {
+    background: #571319; /* Sky 600 */
+    border-radius: 9999px; /* Rounded full */
+    border: 2px solid #f1f5f9; /* Border slate 100 */
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #571319; /* Sky 700 */
+}
+
+/* Standar untuk Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #571319 #f1f5f9;
+}

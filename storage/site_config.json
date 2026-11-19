@@ -1,0 +1,35 @@
+{
+    "hero": {
+        "background_image": "image/hero_1782563125.png",
+        "badge": "Periode 2027",
+        "title": "OSIS SMKN 1 Tarumajaya",
+        "subtitle": "Membangun generasi pemimpin masa depan yang inovatif, kreatif, berintegritas, dan siap berkontribusi untuk kemajuan sekolah.",
+        "button_primary_text": "Daftar Sekarang",
+        "button_primary_link": "#pendaftaran",
+        "button_secondary_text": "Lihat Struktur",
+        "button_secondary_link": "#struktur"
+    },
+    "contacts": [
+        {
+            "id": 1,
+            "type": "email",
+            "label": "Email",
+            "value": "osis@smkn1tarumajaya.sch.id",
+            "order": 1
+        },
+        {
+            "id": 2,
+            "type": "telepon",
+            "label": "WhatsApp",
+            "value": "+62 812-3456-7890",
+            "order": 2
+        },
+        {
+            "id": 3,
+            "type": "lokasi",
+            "label": "Alamat",
+            "value": "Jl. Raya Tarumajaya No. 123, Bekasi",
+            "order": 3
+        }
+    ]
+}

@@ -1,0 +1,72 @@
+trix-toolbar .trix-button-row::-webkit-scrollbar {
+    display: none !important;
+}
+
+trix-toolbar .trix-button-row {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow-x: auto !important;
+}
+
+trix-editor::-webkit-scrollbar {
+    display: none !important;
+}
+
+trix-editor {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow-y: auto !important;
+
+    background-color: #fff1f2 !important; /* rose-50 */
+    border: 1px solid #fecdd3 !important; /* rose-200 */
+    border-radius: 0.75rem !important;
+    color: #881337 !important; /* rose-900 */
+    min-height: 250px !important;
+    padding: 0.75rem 1rem !important;
+}
+
+trix-editor:focus {
+    border-color: #f43f5e !important; /* rose-500 */
+    box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.15) !important;
+    outline: none !important;
+}
+
+trix-toolbar .trix-button-group {
+    border: 1px solid #fecdd3 !important; /* rose-200 */
+    background-color: #ffe4e6 !important; /* rose-100 */
+    border-radius: 0.5rem !important;
+}
+
+trix-toolbar .trix-button {
+    border-bottom: none !important;
+    filter: none !important;
+    background: transparent !important;
+}
+
+trix-toolbar .trix-button:hover {
+    background-color: #fecdd3 !important; /* rose-200 */
+}
+
+trix-toolbar .trix-button--active {
+    background-color: #f43f5e !important; /* rose-500 */
+    filter: none !important;
+}
+
+/* Ikon aktif jadi putih */
+trix-toolbar .trix-button--active::before {
+    filter: brightness(0) invert(1);
+}
+
+.trix-button-group--file-tools {
+    display: none !important;
+}
+
+trix-editor a {
+    color: #e11d48 !important; /* rose-600 */
+    text-decoration: underline !important;
+    font-weight: 500;
+}
+
+trix-editor a:hover {
+    color: #be123c !important; /* rose-700 */
+}

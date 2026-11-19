@@ -1,0 +1,367 @@
+/* ==========================================================================
+   ARSIP FOTO & MEMORI KENANGAN OSIS SMKN 1 TARUMAJAYA
+   Theme: Vintage School Classroom Chalkboard & Authentic Hanging Polaroid Rope
+   ========================================================================== */
+
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #0f1a14;
+}
+::-webkit-scrollbar-thumb {
+    background: #476654;
+    border-radius: 9999px;
+    border: 2px solid #0f1a14;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #5f8870;
+}
+
+body {
+    background-color: #15221b;
+    color: #f8fafc;
+    font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+/* --- CHALKBOARD ENVIRONMENT --- */
+.chalkboard-container {
+    position: relative;
+    min-height: 100vh;
+    background-color: #17261f;
+    background-image: 
+        radial-gradient(ellipse 95% 65% at 50% 25%, #223a2f 0%, #172720 55%, #0e1713 100%),
+        radial-gradient(circle at 12% 35%, rgba(255, 255, 255, 0.045) 0%, transparent 40%),
+        radial-gradient(circle at 88% 65%, rgba(255, 255, 255, 0.035) 0%, transparent 45%),
+        radial-gradient(circle at 50% 88%, rgba(255, 255, 255, 0.05) 0%, transparent 35%),
+        repeating-linear-gradient(110deg, transparent, transparent 160px, rgba(255, 255, 255, 0.012) 161px, rgba(255, 255, 255, 0.012) 185px, transparent 186px);
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
+}
+
+/* Chalk dust texture simulation */
+.chalk-dust-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.28;
+    z-index: 1;
+}
+
+/* --- WOODEN FRAME BORDERS --- */
+.chalkboard-top-frame {
+    height: 20px;
+    width: 100%;
+    background: linear-gradient(to bottom, #7d441e 0%, #5a2e12 50%, #3e1e0a 100%);
+    border-bottom: 2px solid #2a1306;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+    position: relative;
+    z-index: 40;
+}
+.chalkboard-top-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255, 255, 255, 0.05) 41px, transparent 43px);
+}
+
+.chalkboard-bottom-tray {
+    position: relative;
+    width: 100%;
+    height: 38px;
+    background: linear-gradient(to bottom, #8a4b20 0%, #633314 45%, #42200a 100%);
+    border-top: 3px solid #9e5b2a;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.65), inset 0 2px 3px rgba(255, 255, 255, 0.25);
+    z-index: 30;
+    margin-top: 3rem;
+}
+
+/* Chalk Sticks on the Tray */
+.chalk-stick {
+    position: absolute;
+    bottom: 10px;
+    height: 12px;
+    border-radius: 3px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+.chalk-white {
+    width: 58px;
+    right: 180px;
+    background: linear-gradient(to bottom, #ffffff, #e2e8f0);
+}
+.chalk-pink {
+    width: 44px;
+    right: 248px;
+    background: linear-gradient(to bottom, #fda4af, #f43f5e);
+}
+.chalk-yellow {
+    width: 50px;
+    right: 302px;
+    background: linear-gradient(to bottom, #fef08a, #eab308);
+}
+.chalk-blue {
+    width: 38px;
+    right: 362px;
+    background: linear-gradient(to bottom, #bae6fd, #38bdf8);
+}
+
+/* Classic Felt Blackboard Eraser */
+.chalk-eraser {
+    position: absolute;
+    bottom: 8px;
+    right: 45px;
+    width: 110px;
+    height: 22px;
+    background: linear-gradient(to bottom, #a16233, #6b3e1c);
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+.chalk-eraser::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 4px;
+    right: 4px;
+    height: 6px;
+    background: #475569;
+    border-radius: 2px;
+    box-shadow: inset 0 -1px 2px rgba(255, 255, 255, 0.2);
+}
+.chalk-eraser::after {
+    content: '';
+}
+
+/* --- CHALK TYPOGRAPHY & DOODLES --- */
+.chalk-text {
+    color: #f8fafc;
+    text-shadow: 
+        0 0 1px rgba(255, 255, 255, 0.9),
+        0 0 3px rgba(255, 255, 255, 0.45),
+        2px 2px 2px rgba(0, 0, 0, 0.6);
+}
+
+.chalk-font-hand {
+    font-family: 'Caveat', cursive;
+}
+.chalk-font-sub {
+    font-family: 'Patrick Hand', cursive;
+}
+
+.chalk-badge {
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px dashed rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+    color: #f1f5f9;
+}
+
+.chalk-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 2px dashed rgba(255, 255, 255, 0.35);
+    color: #cbd5e1;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.05rem;
+    transition: all 0.25s ease;
+}
+.chalk-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.75);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+}
+.chalk-btn.is-active {
+    background: rgba(255, 255, 255, 0.24);
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.25);
+}
+
+/* --- THE ROPE SYSTEM — Natural SVG Catenary Rope rendered via JS --- */
+.rope-stage {
+    position: relative;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+/* SVG rope canvas stretches full width */
+.rope-svg-canvas {
+    display: block;
+    width: 100%;
+    height: 70px;        /* gives room for the sag */
+    overflow: visible;
+    position: relative;
+    z-index: 20;
+}
+
+/* Hidden: old CSS rope replaced by SVG */
+.arsip-rope {
+    display: none;
+}
+
+/* Nails are now rendered inside the SVG */
+.rope-nail { display: none; }
+.rope-nail-left { display: none; }
+.rope-nail-right { display: none; }
+
+/* Horizontal Track for Hanging Polaroids */
+.arsip-track {
+    display: flex;
+    gap: 2.5rem;
+    overflow-x: auto;
+    padding: 0.5rem 3rem 5rem 3rem;
+    scroll-behavior: smooth;
+    cursor: grab;
+    position: relative;
+    z-index: 15;
+    /* Track overlaps the rope SVG a little so clips start right at rope level */
+    margin-top: -18px;
+}
+.arsip-track::-webkit-scrollbar {
+    display: none;
+}
+.arsip-track:active {
+    cursor: grabbing;
+}
+
+/* --- THE REALISTIC POLAROID CARD --- */
+.polaroid {
+    position: relative;
+    min-width: 240px;
+    max-width: 240px;
+    background: #faf8f2;
+    padding: 11px 11px 36px 11px;
+    border-radius: 2px;
+    /* Soft paper shadow — only under/around the card, NO boxy glow */
+    box-shadow:
+        0 6px 18px -4px rgba(0,0,0,0.55),
+        0 2px 6px rgba(0,0,0,0.25);
+    transform-origin: center top;    /* pivot at the clothespin clip point */
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+    user-select: none;
+    /* Extra top margin so clothespin sits above rope visually */
+    margin-top: 6px;
+}
+
+/* Remove old boxy ::after shadow */
+.polaroid::after {
+    content: none;
+}
+
+/* Polaroid Photo Image Wrapper */
+.polaroid-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 195px;
+    overflow: hidden;
+    border-radius: 1px;
+    background: #0f172a;
+}
+.polaroid-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+/* Subtle glossy print sheen */
+.polaroid-img-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 50%);
+    pointer-events: none;
+}
+
+/* --- CLOTHESPIN WRAPPER --- */
+.clothespin-wrap {
+    position: absolute;
+    top: -38px;          /* sits above the card, overlapping rope */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 26px;
+    height: 56px;
+    z-index: 30;
+    pointer-events: none;
+    /* soft shadow under pin */
+    filter: drop-shadow(1px 4px 3px rgba(0,0,0,0.55));
+}
+
+/* Hover: lift card straight up */
+.polaroid:hover {
+    transform: scale(1.06) translateY(-14px) rotate(0deg) !important;
+    z-index: 60;
+    box-shadow:
+        0 24px 48px -8px rgba(0,0,0,0.70),
+        0 8px 16px -4px rgba(0,0,0,0.35);
+}
+.polaroid:hover .polaroid-img-wrapper img {
+    transform: scale(1.04);
+}
+
+/* Natural Hanging Pendulum Sway — pivot at top-center (clothespin) */
+.wind {
+    animation: naturalPendulum 4.5s ease-in-out infinite alternate;
+    transform-origin: center top;
+}
+@keyframes naturalPendulum {
+    0%   { transform: rotate(var(--rot-angle, 0deg)); }
+    40%  { transform: rotate(calc(var(--rot-angle, 0deg) + 1.4deg)); }
+    100% { transform: rotate(calc(var(--rot-angle, 0deg) - 1.4deg)); }
+}
+
+/* --- LIGHTBOX MODAL --- */
+#chalk-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    background: rgba(10, 18, 14, 0.90);
+    backdrop-filter: blur(14px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+#chalk-lightbox.hidden {
+    display: none;
+}
+#chalk-lightbox.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+.lightbox-polaroid {
+    max-width: 560px;
+    width: 100%;
+    background: #faf8f2;
+    padding: 18px 18px 42px 18px;
+    border-radius: 3px;
+    /* Clean polaroid shadow — no boxy glow */
+    box-shadow:
+        0 28px 60px -10px rgba(0,0,0,0.85),
+        0 10px 22px -5px rgba(0,0,0,0.5);
+    transform: scale(0.88) rotate(-1.5deg);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+#chalk-lightbox.is-open .lightbox-polaroid {
+    transform: scale(1) rotate(0deg);
+}
+
+/* Mobile Back Button */
+.mobile-back-btn {
+    transition: all .45s cubic-bezier(.4, 0, .2, 1);
+}
+#back-btn-container.is-closed {
+    opacity: .85;
+    scale: .92;
+}
+#back-btn-container.is-open {
+    width: 56px;
+}
