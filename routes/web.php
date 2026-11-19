@@ -299,6 +299,61 @@ Route::get('/debug-home', function () {
     }
 });
 
+Route::get('/debug-struktur', function () {
+    $results = [];
+    
+    // 1. Test render create view as Ketua
+    try {
+        $user = \App\Models\User::first();
+        Auth::login($user);
+        $view = view('struktur.create')->render();
+        $results['view_create'] = 'OK (' . strlen($view) . ' bytes)';
+    } catch (\Throwable $e) {
+        $results['view_create_error'] = [
+            'class' => get_class($e),
+            'message' => $e->getMessage(),
+            'file' => $e->getFile(),
+            'line' => $e->getLine()
+        ];
+    }
+
+    // 2. Test render index view as Ketua
+    try {
+        $req = \Illuminate\Http\Request::create('/struktur', 'GET');
+        $resp = app(\App\Http\Controllers\StrukturController::class)->index($req);
+        $results['view_index'] = 'OK';
+    } catch (\Throwable $e) {
+        $results['view_index_error'] = [
+            'class' => get_class($e),
+            'message' => $e->getMessage(),
+            'file' => $e->getFile(),
+            'line' => $e->getLine()
+        ];
+    }
+
+    // 3. Test store method
+    try {
+        $req = \Illuminate\Http\Request::create('/struktur', 'POST', [
+            'name' => 'Diagnostik User',
+            'email' => 'diag_' . time() . '@test.com',
+            'kelas' => 'XII TKJ',
+            'jabatan' => 'anggota_divisi_humas',
+            'password' => 'password123'
+        ]);
+        $resp = app(\App\Http\Controllers\StrukturController::class)->store($req);
+        $results['store_action'] = 'OK (Redirected to ' . $resp->getTargetUrl() . ')';
+    } catch (\Throwable $e) {
+        $results['store_action_error'] = [
+            'class' => get_class($e),
+            'message' => $e->getMessage(),
+            'file' => $e->getFile(),
+            'line' => $e->getLine()
+        ];
+    }
+
+    return response()->json($results, 200, [], JSON_PRETTY_PRINT);
+});
+
 Route::get('/berita/{berita:slug}', [BeritaController::class, 'show'])->name('berita.show');
 Route::view('/exp', 'osis.export-approved-pdf')->name('export-pdf');
 
