@@ -91,7 +91,7 @@ class StrukturController extends Controller
     public function create()
     {
         $auth = Auth::user();
-        if (!in_array($auth->role, ['ketua', 'wakil', 'sekretaris'])) {
+        if (!in_array($auth->role, ['ketua', 'wakil', 'sekretaris']) && !str_starts_with($auth->role, 'ketua_divisi_')) {
             abort(403, 'Anda tidak memiliki akses untuk menambah pengurus.');
         }
         return view('struktur.create');
@@ -101,8 +101,8 @@ class StrukturController extends Controller
     {
         $auth = Auth::user();
 
-        if (!in_array($auth->role, ['ketua', 'wakil', 'sekretaris'])) {
-            abort(403);
+        if (!in_array($auth->role, ['ketua', 'wakil', 'sekretaris']) && !str_starts_with($auth->role, 'ketua_divisi_')) {
+            abort(403, 'Anda tidak memiliki wewenang untuk mendaftarkan pengurus.');
         }
 
         $request->validate([
@@ -120,7 +120,9 @@ class StrukturController extends Controller
         if (str_starts_with($auth->role, 'ketua_divisi_')) {
             $divisiAuth = str_replace('ketua_divisi_', '', $auth->role);
             if (!str_starts_with($role, 'anggota_divisi_') || !str_contains($role, $divisiAuth)) {
-                abort(403, 'Anda hanya bisa menambahkan anggota untuk divisi Anda sendiri.');
+                return back()->withErrors([
+                    'jabatan' => 'Anda hanya bisa menambahkan anggota untuk divisi Anda sendiri (' . ucwords(str_replace('_', ' ', $divisiAuth)) . ').'
+                ])->withInput();
             }
         }
 
@@ -144,14 +146,19 @@ class StrukturController extends Controller
             $file->move($path, $filename);
         }
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'role' => $role,
-            'kelas' => $request->kelas,
-            'foto' => $filename,
-            'password' => Hash::make($request->password),
-        ]);
+        try {
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'role' => $role,
+                'kelas' => $request->kelas,
+                'foto' => $filename,
+                'password' => Hash::make($request->password),
+            ]);
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error('Failed to create user in Struktur: ' . $e->getMessage(), ['exception' => $e]);
+            return back()->withErrors(['name' => 'Gagal mendaftarkan pengurus: ' . $e->getMessage()])->withInput();
+        }
 
         return redirect()->route('struktur.index')->with('success', 'Data pengurus berhasil ditambahkan.');
     }

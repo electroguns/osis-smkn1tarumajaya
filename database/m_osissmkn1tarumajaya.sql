@@ -11,7 +11,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -28,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `activity_reports` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `activity_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `activity_date` date NOT NULL,
   `document_link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -49,7 +48,7 @@ CREATE TABLE `activity_reports` (
 --
 
 CREATE TABLE `arsips` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `tahun` year NOT NULL,
   `judul` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `caption` text COLLATE utf8mb4_unicode_ci,
@@ -65,7 +64,7 @@ CREATE TABLE `arsips` (
 --
 
 CREATE TABLE `attendances` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `event_id` bigint UNSIGNED NOT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
   `scanned_at` timestamp NOT NULL,
@@ -82,7 +81,7 @@ CREATE TABLE `attendances` (
 --
 
 CREATE TABLE `beritas` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `excerpt` longtext COLLATE utf8mb4_unicode_ci,
@@ -104,7 +103,7 @@ CREATE TABLE `beritas` (
 --
 
 CREATE TABLE `cache` (
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL PRIMARY KEY,
   `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -116,7 +115,7 @@ CREATE TABLE `cache` (
 --
 
 CREATE TABLE `cache_locks` (
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL PRIMARY KEY,
   `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -128,7 +127,7 @@ CREATE TABLE `cache_locks` (
 --
 
 CREATE TABLE `events` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci,
@@ -151,7 +150,7 @@ CREATE TABLE `events` (
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -167,7 +166,7 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `finances` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `tanggal` date NOT NULL,
   `keterangan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `divisi` enum('inti','humas','artmedia','olahraga','agama') COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -184,7 +183,7 @@ CREATE TABLE `finances` (
 --
 
 CREATE TABLE `jobs` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `attempts` tinyint UNSIGNED NOT NULL,
@@ -200,7 +199,7 @@ CREATE TABLE `jobs` (
 --
 
 CREATE TABLE `job_batches` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL PRIMARY KEY,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `total_jobs` int NOT NULL,
   `pending_jobs` int NOT NULL,
@@ -219,7 +218,7 @@ CREATE TABLE `job_batches` (
 --
 
 CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -278,7 +277,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL PRIMARY KEY,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -290,7 +289,7 @@ CREATE TABLE `password_reset_tokens` (
 --
 
 CREATE TABLE `pendaftaran_osis` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kelas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -312,7 +311,7 @@ CREATE TABLE `pendaftaran_osis` (
 --
 
 CREATE TABLE `sessions` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL PRIMARY KEY,
   `user_id` bigint UNSIGNED DEFAULT NULL,
   `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_agent` text COLLATE utf8mb4_unicode_ci,
@@ -327,7 +326,7 @@ CREATE TABLE `sessions` (
 --
 
 CREATE TABLE `suaras` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `rating` int DEFAULT NULL,
   `kategori` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `saran` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -343,7 +342,7 @@ CREATE TABLE `suaras` (
 --
 
 CREATE TABLE `subscribers` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -356,7 +355,7 @@ CREATE TABLE `subscribers` (
 --
 
 CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
@@ -389,7 +388,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `qr
 --
 
 CREATE TABLE `vision_missions` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -404,20 +403,16 @@ CREATE TABLE `vision_missions` (
 -- Indexes for table `activity_reports`
 --
 ALTER TABLE `activity_reports`
-  ADD PRIMARY KEY (`id`),
+
   ADD KEY `activity_reports_user_id_foreign` (`user_id`);
 
 --
--- Indexes for table `arsips`
---
-ALTER TABLE `arsips`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `attendances`
 --
 ALTER TABLE `attendances`
-  ADD PRIMARY KEY (`id`),
+
   ADD KEY `attendances_event_id_foreign` (`event_id`),
   ADD KEY `attendances_user_id_foreign` (`user_id`);
 
@@ -425,7 +420,7 @@ ALTER TABLE `attendances`
 -- Indexes for table `beritas`
 --
 ALTER TABLE `beritas`
-  ADD PRIMARY KEY (`id`),
+
   ADD UNIQUE KEY `beritas_slug_unique` (`slug`),
   ADD KEY `beritas_author_id_foreign` (`author_id`),
   ADD KEY `beritas_status_index` (`status`),
@@ -436,101 +431,73 @@ ALTER TABLE `beritas`
 -- Indexes for table `cache`
 --
 ALTER TABLE `cache`
-  ADD PRIMARY KEY (`key`),
+
   ADD KEY `cache_expiration_index` (`expiration`);
 
 --
 -- Indexes for table `cache_locks`
 --
 ALTER TABLE `cache_locks`
-  ADD PRIMARY KEY (`key`),
+
   ADD KEY `cache_locks_expiration_index` (`expiration`);
 
 --
--- Indexes for table `events`
---
-ALTER TABLE `events`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  ADD PRIMARY KEY (`id`),
+
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indexes for table `finances`
---
-ALTER TABLE `finances`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `jobs`
 --
 ALTER TABLE `jobs`
-  ADD PRIMARY KEY (`id`),
+
   ADD KEY `jobs_queue_index` (`queue`);
 
 --
--- Indexes for table `job_batches`
---
-ALTER TABLE `job_batches`
-  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `password_reset_tokens`
---
-ALTER TABLE `password_reset_tokens`
-  ADD PRIMARY KEY (`email`);
 
 --
 -- Indexes for table `pendaftaran_osis`
 --
 ALTER TABLE `pendaftaran_osis`
-  ADD PRIMARY KEY (`id`),
+
   ADD UNIQUE KEY `pendaftaran_osis_email_unique` (`email`);
 
 --
 -- Indexes for table `sessions`
 --
 ALTER TABLE `sessions`
-  ADD PRIMARY KEY (`id`),
+
   ADD KEY `sessions_user_id_index` (`user_id`),
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
--- Indexes for table `suaras`
---
-ALTER TABLE `suaras`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `subscribers`
 --
 ALTER TABLE `subscribers`
-  ADD PRIMARY KEY (`id`),
+
   ADD UNIQUE KEY `subscribers_email_unique` (`email`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
+
   ADD UNIQUE KEY `users_email_unique` (`email`),
   ADD UNIQUE KEY `users_qr_token_unique` (`qr_token`);
 
 --
--- Indexes for table `vision_missions`
---
-ALTER TABLE `vision_missions`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -539,86 +506,58 @@ ALTER TABLE `vision_missions`
 --
 -- AUTO_INCREMENT for table `activity_reports`
 --
-ALTER TABLE `activity_reports`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `arsips`
 --
-ALTER TABLE `arsips`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `attendances`
 --
-ALTER TABLE `attendances`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `beritas`
 --
-ALTER TABLE `beritas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `events`
 --
-ALTER TABLE `events`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
-ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `finances`
 --
-ALTER TABLE `finances`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `jobs`
 --
-ALTER TABLE `jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
-ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `pendaftaran_osis`
 --
-ALTER TABLE `pendaftaran_osis`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `suaras`
 --
-ALTER TABLE `suaras`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `subscribers`
 --
-ALTER TABLE `subscribers`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `vision_missions`
 --
-ALTER TABLE `vision_missions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

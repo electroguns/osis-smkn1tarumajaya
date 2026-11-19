@@ -299,6 +299,20 @@ Route::get('/debug-home', function () {
     }
 });
 
+Route::get('/debug-fix-test', function () {
+    $rebuildOutput = null;
+    if (request('rebuild') == '1') {
+        \Illuminate\Support\Facades\Artisan::call('db:init-schema');
+        $rebuildOutput = \Illuminate\Support\Facades\Artisan::output();
+    }
+    $col = DB::selectOne("SELECT COLUMN_NAME, COLUMN_TYPE, EXTRA FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'users' AND COLUMN_NAME = 'id'");
+    return response()->json([
+        'rebuild_output' => $rebuildOutput,
+        'users_id_column' => $col,
+        'has_auto_increment' => str_contains(strtolower($col->EXTRA ?? ''), 'auto_increment')
+    ]);
+});
+
 Route::get('/debug-struktur', function () {
     $results = [];
     
